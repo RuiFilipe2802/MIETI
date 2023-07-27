@@ -7,4 +7,4 @@
 * Describe current techniques for physical realization at the memory hierarchy level and parallel execution of instructions, and their impact on system performance;
 * Describe different architectures used in data storage and describe the respective techniques used to increase reliability.
 
-### Final grade: 14
+### Final grade: 14 
