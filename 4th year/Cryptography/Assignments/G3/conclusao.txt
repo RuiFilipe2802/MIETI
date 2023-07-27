@@ -1,0 +1,20 @@
+ECB(Eletronic CodeBook)
+
+Com base na informação recolhida, sabemos que, o ECB (Eletroniuc CodeBook) a mensagem é dividida por blocos em que cada um destes é criptografado individualmente, ou seja, separadamente. 
+Este método ao utilizar este tipo de criptografia apresenta como desvantagem a igualdade, ou seja blocos de texto iguais mesmo que estejam separados estes irão apresentar uma cifra idêntica. Em suma este método nao apresenta segurança perfeita, não sendo recomendado.
+
+
+CBC(Cipher-block chaining)
+
+O método de criptografar CBC, funciona com a utilização de uma função xor juntamente com o bloco anterior cifrado e também com um vetor de inicializarão que serve para que todos os blocos sejam únicos. Em suma, com a utilização da função xor e do anterior bloco codificado faz com que todos os blocos sejam dependentes do bloco anterior.
+
+
+CFB (Cipher feedback)
+
+
+A mensagem neste bit vai ser processa x bits de cada vez à entrada, sendo que o texto processado anteriormente servirá como fundo para o processo seguinte. Em suma, a mensagem vai ser considerada como um fluxo de bits.
+
+
+OFB(Output feedback)
+
+Semelhante à anterior.

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".SecondActivity">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_cidade"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        ></androidx.recyclerview.widget.RecyclerView>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/butoon_flo"
+        android:layout_gravity="end|bottom"
+        android:layout_margin="20dp"
+        app:fabSize="normal"
+        android:backgroundTint="@color/colorPrimaryDark"
+        android:elevation="8dp"
+        android:src="@drawable/ic_check_teste2"
+        ></com.google.android.material.floatingactionbutton.FloatingActionButton>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

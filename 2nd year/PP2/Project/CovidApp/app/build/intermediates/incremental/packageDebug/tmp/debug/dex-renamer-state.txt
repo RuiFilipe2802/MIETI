@@ -1,0 +1,4 @@
+#Mon Mar 16 01:02:32 GMT 2020
+base.0=C\:\\Users\\tiago\\Google Drive\\Tempo-20200310T214210Z-001\\Tempo\\app\\build\\intermediates\\dex\\debug\\out\\classes.dex
+path.0=classes.dex
+renamed.0=classes.dex

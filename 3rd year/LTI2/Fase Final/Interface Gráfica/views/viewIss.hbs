@@ -1,0 +1,55 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<div class="row pt-5 pb-5">
+    <div class="col-6">
+        <h1>Luminosidade</h1>
+    </div>
+</div>
+
+<table class="table table-bordered table-hover">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col" class="text-center">ID Amostra Lux</th>
+            <th scope="col" class="text-center">Lux</th>
+            <th scope="col" class="text-center">Timestamp</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {{#each luminosidade}}
+        <tr class="text-center">
+            <th scope="row">{{this.idAmostraLux}}</th>
+            <td>{{this.lux}}</td>
+            <td>{{this.timeStamp}}</td>
+        </tr>
+        {{/each}}
+
+    </tbody>
+</table>
+
+
+<div class="row pt-5 pb-5">
+    <div class="col-6">
+        <h1>Movimento</h1>
+    </div>
+</div>
+
+
+<table class="table table-bordered table-hover">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col" class="text-center">ID Amostra Mov</th>
+            <th scope="col" class="text-center">TimeStamp</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {{#each movimento}}
+        <tr class="text-center">
+            <td>{{this.idAmostraMov}}</td>
+            <td>{{this.timeStamp}}</td>
+        </tr>
+        {{/each}}
+
+    </tbody>
+</table>

@@ -1,0 +1,22 @@
+USE linces;
+DROP TRIGGER IF EXISTS calcular_estado_saude;
+
+DELIMITER @
+CREATE TRIGGER calcular_estado_saude
+BEFORE INSERT ON Controlo FOR EACH ROW
+BEGIN
+IF NEW.peso < 18 THEN SET NEW.estado_saude = 'OK';
+ELSE SET NEW.estado_saude = 'NOK';
+END IF;
+END;
+@
+DELIMITER ;
+
+INSERT INTO Tecnico VALUES
+('1','Rui'),('2','Filipe'),('3','Ribeiro'),('4','Freitas');
+INSERT INTO Lince VALUES
+('1','Peleja','Feminino','2020-01-01','2020-02-01','1','1'),('2','Marcos','NonBinary','2019-01-01','2019-02-02','2','1'),('3','Tiago','Feminino','2019-01-01','2019-02-02','2','2'),('4','Sandro','Feminino','2019-01-01','2019-02-02','3','4');
+INSERT INTO Localizacao VALUES
+('1','2020-01-02','16:25','39°33.25.89','129°33.25.89'),('2','2019-01-02','15:48','39°33.25.59','125°45.25.89'),('3','2019-01-02','19:48','29°33.25.59','12°45.25.89');
+INSERT INTO Controlo VALUES
+('1','2020-01-02','1','30','Morto'),('2','2019-01-02','2','40','Infetado'),('3','2019-01-02','1','100','Saudável'),('4','2019-01-04','1','10','Saudável');

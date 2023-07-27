@@ -1,0 +1,10 @@
+CREATE VIEW Super_Agencias
+	AS (SELECT *
+		FROM Agencias
+		WHERE cod_agencia
+		FROM Contas
+		WHERE saldo > 500000)
+	AND cod_agencia IN
+		(SELECT cod_agencia
+		FROM Emprestimos
+		WHERE valor > 500000));

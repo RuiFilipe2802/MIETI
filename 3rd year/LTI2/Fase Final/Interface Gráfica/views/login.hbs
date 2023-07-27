@@ -1,0 +1,25 @@
+
+<div class="card">
+  <div class="card-header">
+    Login
+  </div>
+  <div class="card-body">
+    <form action="/auth/login" method="POST">
+
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input type="email" class="form-control" id="email" name="email" />
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" class="form-control" id="password" name="password" />
+      </div>
+
+      <button type="submit" class="btn btn-dark">Login</button>
+    </form>
+  </div>
+  {{#if message}}
+  <h4 class="alert alert-danger mt-4">{{message}}</h4>
+  {{/if}}
+</div>

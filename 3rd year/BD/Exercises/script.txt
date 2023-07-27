@@ -1,0 +1,18 @@
+Drop DATABASE IF EXISTS teste;
+Create DATABASE teste;
+USE teste;
+CREATE TABLE tab1(
+a int,
+b char,
+c varchar(100),
+PRIMARY KEY(a)
+);
+CREATE TABLE tab2(
+x int,
+y int,
+z int,
+primary key(x),
+foreign key(z) references tab1(a)
+on update cascade
+on delete set null
+);

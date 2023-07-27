@@ -1,0 +1,7 @@
+Do lado do emissor é executada a aplicação num PC que gera dados que serão enviados 
+ao ESP32 através de uma ligação TCP/IP para mais tarde serem difundidos através do LED 
+para o receptor. O driver servirá para interligar o ESP32 com o dispostivo emissor de luz (LED).  
+Do lado do recetor temos um fotodetector que receberá os dados provenientes do emissor. 
+É implementado à custa de hardware específico para transformar o sinal óptico num sinal 
+eléctrico e software a executar no ESP32.  Por fim, temos um PC do lado do receptor que 
+recebe e visualiza a informação difundida através do canal óptico.

@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Tempo</string>
+    <string name="tmin1">TextView</string>
+    <string name="tmax1">TextView</string>
+    <string name="tmin2">TextView</string>
+    <string name="tmax2">TextView</string>
+    <string name="tmin3">TextView</string>
+    <string name="tmax3">TextView</string>
+    <string name="precP1">TextView</string>
+    <string name="precP2">TextView</string>
+    <string name="precP3">TextView</string>
+    <string name="cidades">CIdades</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

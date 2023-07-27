@@ -1,0 +1,10 @@
+filho(joao,jose).
+filho(jose,manuel).
+filho(carlos,jose).
+pai(paulo,filipe).
+pai(paulo,maria).
+avo(antonio,nadia).
+neto(nuno,ana).
+masculino(joao).
+masculino(jose).
+feminino(maria).

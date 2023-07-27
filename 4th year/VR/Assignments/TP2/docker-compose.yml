@@ -1,0 +1,74 @@
+version: '3.3'
+
+services:
+  mysql-db:
+    image: mysql:latest
+    container_name: db_container
+    networks:
+      - db_network
+    ports:
+      - "3306:3306"
+    expose:
+      - '3306'
+    restart: always
+    environment:
+      MYSQL_DATABASE: db_auth
+      MYSQL_ROOT_PASSWORD: 12345
+      MYSQL_USER: root
+      MYSQL_PASSWORD: 12345
+    volumes:
+      - db_data:/var/lib/mysql
+    cap_add:
+      - SYS_NICE  # Desabilitar o aviso "mbind: Operation not permitted"
+
+  adminer:
+    image: adminer:4
+    container_name: adminer_container
+    networks:
+      - db_network
+    restart: always
+    ports:
+      - 8080:8080
+
+  auth_service:
+    image: ruif12/auth_service
+    #build: ./auth
+    command: npm start
+    container_name: auth_container
+    restart: always
+    networks:
+      - db_network
+      - auth_network
+    ports:
+      - "5000:5000"
+    expose:
+      - "5000"
+    depends_on:
+      - mysql-db
+      - adminer
+    
+  http_service:
+    image: ruif12/http_service
+    command: npm start
+    container_name: http_container
+    restart: always
+    networks:
+      - auth_network
+    ports:
+      - "5001:5001"
+    expose:
+      - "5001"
+    depends_on:
+      - auth_service
+    volumes:
+      - http_data:/http
+
+networks:
+  db_network:  
+  auth_network:  
+
+volumes:
+  db_data:
+  http_data:
+
+    

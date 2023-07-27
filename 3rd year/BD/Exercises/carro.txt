@@ -1,0 +1,47 @@
+Drop DATABASE IF EXISTS carro;
+Create DATABASE carro;
+USE carro;
+
+CREATE TABLE Viatura(
+matricula varchar(50),
+marca varchar(50),
+PRIMARY KEY(matricula)
+);
+
+CREATE TABLE Cliente(
+cod_cliente int,
+nome varchar(50),
+localidade varchar(50),
+PRIMARY KEY(cod_cliente)
+);
+
+
+CREATE TABLE Seguro(
+cod_tipo int,
+tipo_seguro varchar(50),
+PRIMARY KEY(cod_tipo)
+);
+
+CREATE TABLE Apolice(
+num_apolice int,
+data date,
+valor int,
+estado varchar(50),
+matricula varchar(50),
+cod_cliente int,
+cod_tipo int,
+PRIMARY KEY(num_apolice),
+FOREIGN KEY(matricula) references Viatura(matricula),
+FOREIGN KEY(cod_cliente) references Cliente(cod_cliente),
+FOREIGN KEY(cod_tipo) references Seguro(cod_tipo)
+
+);
+
+CREATE TABLE Pagamento(
+num_pag int,
+data_pag date,
+valor_pag int,
+num_apolice int,
+PRIMARY KEY(num_pag),
+FOREIGN KEY(num_apolice) references Apolice(num_apolice) 
+); 

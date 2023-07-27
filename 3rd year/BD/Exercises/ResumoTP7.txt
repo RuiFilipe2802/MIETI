@@ -1,0 +1,145 @@
+SQL
+Controlo+L //apaga bash
+\sql //inicial
+\connect --mysql root@127.0.0.1 //conectar ao localhost
+show databases; //mostra todas as databases 
+create database teste; //cria database teste
+drop database teste; //delete database teste
+
+Num ficheiro texto create database teste;
+depois source C:\Users\HP\Desktop\teste.txt para compilar
+
+se # -->comentário
+
+EX1-->
+//Num ficheiro texto
+Drop DATABASE IF EXISTS teste;
+Create DATABASE teste;
+USE teste;
+CREATE TABLE tab1(
+a int,
+b char,
+c varchar(100),
+PRIMARY KEY(a)
+);
+CREATE TABLE tab2(
+x int,
+y int,
+z int,
+primary key(x),
+foreign key(z) references tab1(a)
+on update cascade
+on delete set null
+);
+
+source C:\Users\HP\Desktop\teste.txt
+show databases;
+show tables;
+show columns from tab1;
+
+EX2-->
+use teste;
+insert into tab1
+values (1, 'a', 'o primeirissimo!'),
+(10, 'h', 'o segundo!!!'),
+(100, 'w', 'the last one...'),
+(12, 'f', 'khgjhghghg');
+insert into tab2
+values (1, 300, 10),
+(2, 250, 1),
+(3, 100, 1),
+(4, 100, 12);
+alter table tab2 add column w int default 20;
+
+source C:\Users\HP\Desktop\teste2.txt
+select * from tab1; //ve tudo que ta guardado na tab1
+show columns from tab2;
+select * from tab2;
+//tipos de help
+help contents;
+help Data Types;
+help char;
+help 'Varchar'
+
+EX3-->
+Drop DATABASE IF EXISTS teste2;
+Create DATABASE teste2;
+USE teste2;
+
+CREATE TABLE Grupo(
+codgrupo int, #AUTO INCREMENT vai incrementar em uma unidade sempre que se fizer um insert ou seja nao precisamos passar valor
+designacao varchar(100),
+primary key(codgrupo)
+);
+CREATE TABLE Professor(
+codprof int,
+codgrupo int,
+nome varchar(100),
+PRIMARY KEY(codprof),
+foreign key(codgrupo) references Grupo(codgrupo) 
+);
+CREATE TABLE Tipo(
+tipo varchar(100),
+descricao varchar(100),
+primary key(tipo)
+);
+CREATE TABLE Escola(
+codesc int,
+nome varchar(100) UNIQUE,
+tipo varchar(100),
+concelho varchar(100),
+telefone int,
+primary key(codesc),
+foreign key(tipo) references Tipo(tipo)
+);
+CREATE TABLE Candidatura(
+codesc int,
+codgrupo int,
+preferencia varchar(100) not null,
+primary key(codgrupo,codesc),
+foreign key(codgrupo) references Grupo(codgrupo) on update cascade,
+foreign key(codesc) references Escola(codesc) on update cascade
+);
+CREATE TABLE Vaga(
+codesc int,
+codgrupo int,
+num_vagas int,
+primary key(codgrupo,codesc),
+foreign key(codgrupo) references Grupo(codgrupo) on update cascade,
+foreign key(codesc) references Escola(codesc) on update cascade 
+);
+
+show databases;
+show tables;
+show columns from candidatura;
+
+Ex4 -->
+use teste2;
+
+insert into Grupo
+
+values (1,'Matemática'),
+(2,'Português');
+
+insert into Professor
+
+values (1, 1 ,'Prof.João Silva'),
+(2,2,'Prof.Maria Soares');
+
+select * from Professor;
+select * from Grupo;
+
+se auto increment 
+insert into Grupo values (null, 'Matematica')
+
+Ex5 -->
+use teste2;
+
+insert into Grupo
+
+values(3,'Fisica');
+
+UPDATE Professor SET codgrupo=3 WHERE codprof=1;
+
+select * from Professor;
+select * from Grupo;

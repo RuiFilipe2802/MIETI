@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FirstScreen">
+
+    <Button
+        android:id="@+id/button_registo"
+        android:layout_width="150dp"
+        android:layout_height="75dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="100dp"
+        android:background="@drawable/curves"
+        android:backgroundTint="#E1D6D3"
+        android:text="@string/registo"
+        android:textSize="24sp" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="162dp"
+        android:layout_height="160dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="125dp"
+        android:layout_marginTop="70dp"
+        android:layout_marginEnd="125dp"
+        android:layout_marginBottom="502dp"
+        android:src="@drawable/covid"
+        android:contentDescription="@string/todo" />
+
+    <Button
+        android:id="@+id/button_login"
+        android:layout_width="150dp"
+        android:layout_height="75dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="40dp"
+        android:layout_marginBottom="100dp"
+        android:background="@drawable/curves"
+        android:backgroundTint="#E1D6D3"
+        android:text="@string/login"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/location_name"
+        android:layout_width="wrap_content"
+        android:layout_height="65dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="45dp"
+        android:layout_marginEnd="45dp"
+        android:layout_marginBottom="410dp"
+        android:text="Covid App"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="#D55228"
+        android:textSize="45sp"
+        android:textStyle="bold|italic" />
+
+    <Button
+        android:id="@+id/resultados_button"
+        android:layout_width="wrap_content"
+        android:layout_height="120dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="100dp"
+        android:layout_marginEnd="100dp"
+        android:layout_marginBottom="250dp"
+        android:background="@drawable/curves"
+        android:backgroundTint="#EC8C6A"
+        android:textAlignment="center"
+        android:textColor="#1B1A19"
+        android:textSize="20sp" />
+
+</RelativeLayout>

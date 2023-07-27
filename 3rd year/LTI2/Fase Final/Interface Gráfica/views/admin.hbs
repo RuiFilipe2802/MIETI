@@ -1,0 +1,89 @@
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<div class="row pt-5 pb-5">
+    <div class="col-6">
+        <h1>Users</h1>
+    </div>
+    <div class="container">
+        <form class="example" method="POST" action="/admin" novalidate>
+            <input class="form-label" type="text" placeholder="Search" name="search" aria-label="Search">
+            <button class="btn btn-dark btn-small" type="submit">Search</button>
+        </form>
+    </div>
+</div>
+
+<table class="table table-bordered table-hover">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col" class="text-center">User ID</th>
+            <th scope="col" class="text-center">Username</th>
+            <th scope="col" class="text-center">Email</th>
+            <th scope="col" class="text-center">ID Concentrador</th>
+            <th scope="col" class="text-center">Action</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {{#each accounts}}
+        <tr class="text-center">
+            <th scope="row">{{this.id}}</th>
+            <td>{{this.username}}</td>
+            <td>{{this.email}}</td>
+            <td>{{this.idConcentrador}}</td>
+            <td>
+                <a href="/edit/{{this.id}}" type="button" class="btn btn-light btn-small"><i class="bi bi-pencil"></i>
+                    Edit</a>
+                <a href="/{{this.id}}" type="button" class="btn btn-light btn-small"><i class="bi bi-person-x"></i>
+                    Delete</a>
+            </td>
+        </tr>
+        {{/each}}
+
+    </tbody>
+</table>
+
+
+<div class="row pt-5 pb-5">
+    <div class="col-6">
+        <h1>Concentradores</h1>
+    </div>
+    <div class="col-6 d-flex justify-content-end">
+        <a href="/addConcentrador" type="button" class="btn btn-dark align-self-center"> Add Concentrador</a>
+    </div>
+    <div class="container">
+        <form class="example" method="POST" action="/admin" novalidate>
+            <input class="form-label" type="text" placeholder="Search" name="search2" aria-label="Search">
+            <button class="btn btn-dark btn-small" type="submit">Search</button>
+        </form>
+    </div>
+</div>
+
+
+<table class="table table-bordered table-hover">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col" class="text-center">ID Concentrador</th>
+            <th scope="col" class="text-center">X</th>
+            <th scope="col" class="text-center">Y</th>
+            <th scope="col" class="text-center">Action</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {{#each concentradores}}
+        <tr class="text-center">
+            <td>{{this.idConcentrador}}</td>
+            <td>{{this.x}}</td>
+            <td>{{this.y}}</td>
+            <td>
+                <a href="/editConcentradores/{{this.idConcentrador}}" type="button" class="btn btn-light btn-small"><i
+                        class="bi bi-pencil"></i> Edit</a>
+                <a href="/remove/{{this.idConcentrador}}" type="button" class="btn btn-light btn-small"><i
+                        class="bi bi-person-x"></i> Delete</a>
+            </td>
+        </tr>
+        {{/each}}
+
+    </tbody>
+</table>

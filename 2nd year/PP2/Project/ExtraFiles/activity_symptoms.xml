@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SymptomsActivity">
+
+    <Button
+        android:id="@+id/button_health"
+        android:layout_width="200dp"
+        android:layout_height="100dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="95dp"
+        android:layout_marginEnd="95dp"
+        android:layout_marginBottom="150dp"
+        android:background="@drawable/curves"
+        android:backgroundTint="#E1D6D3"
+        android:text="ESTADO DE    SAUDE"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textSize="24sp"
+        android:textStyle="normal|bold|italic" />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="162dp"
+        android:layout_height="160dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="125dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="125dp"
+        android:src="@drawable/covid" />
+
+    <Button
+        android:id="@+id/button_symptoms"
+        android:layout_width="200dp"
+        android:layout_height="80dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="95dp"
+        android:layout_marginEnd="95dp"
+        android:layout_marginBottom="300dp"
+        android:background="@drawable/curves"
+        android:backgroundTint="#E1D6D3"
+        android:text="SINTOMAS"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textSize="24sp"
+        android:textStyle="normal|bold|italic" />
+
+    <Button
+        android:id="@+id/button_results"
+        android:layout_width="117dp"
+        android:layout_height="59dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="40dp"
+        android:text="CONTINUAR"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/welcome_name"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_above="@+id/button_symptoms"
+        android:layout_below="@+id/imageView5"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="40dp"
+        android:textAlignment="center"
+        android:textColor="#EC430E"
+        android:textSize="36sp"
+        android:textStyle="normal|bold|italic" />
+
+</RelativeLayout>

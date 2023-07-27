@@ -1,0 +1,34 @@
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<div class="row pt-5 pb-5">
+    <div class="col-6">
+        <h1>ISS</h1>
+    </div>
+</div>
+
+<table class="table table-bordered table-hover">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col" class="text-center">ISS</th>
+            <th scope="col" class="text-center">X</th>
+            <th scope="col" class="text-center">Y</th>
+            <th scope="col" class="text-center">Action</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {{#each results}}
+        <tr class="text-center">
+            <th scope="row">{{this.idIss}}</th>
+            <td>{{this.x}}</td>
+            <td>{{this.y}}</td>
+            <td>
+                <a href="/dash/{{this.idIss}}" type="button" class="btn btn-light btn-small"><i class="bi bi-eye"></i>
+                    View</a>
+            </td>
+        </tr>
+        {{/each}}
+
+    </tbody>
+</table>

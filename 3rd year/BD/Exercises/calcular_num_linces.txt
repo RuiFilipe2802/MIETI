@@ -1,0 +1,28 @@
+USE linces;
+INSERT INTO Tecnico VALUES
+('1','Rui'),('2','Filipe'),('3','Ribeiro'),('4','Freitas');
+INSERT INTO Lince VALUES
+('1','Peleja','Feminino','2020-01-01','2020-02-01','1','1'),('2','Marcos','NonBinary','2019-01-01','2019-02-02','2','1'),('3','Tiago','Feminino','2019-01-01','2019-02-02','2','2');
+INSERT INTO Localizacao VALUES
+('1','2020-01-02','16:25','39°33.25.89','129°33.25.89'),('2','2019-01-02','15:48','39°33.25.59','125°45.25.89'),('3','2019-01-02','19:48','29°33.25.59','12°45.25.89');
+INSERT INTO Controlo VALUES
+('1','2020-01-02','1','30','Morto'),('2','2019-01-02','2','40','Infetado'),('3','2019-01-02','1','100','Saudável');
+
+DELIMITER @
+CREATE PROCEDURE calcular_num_linces(OUT nTotal int)
+BEGIN
+SELECT COUNT(*) INTO nTotal from Lince;
+END;
+@
+DELIMITER ;
+
+DELIMITER @
+CREATE FUNCTION media_peso()
+RETURNS MEDIA
+BEGIN
+	DECLARE media_peso MEDIA();
+	SET 
+	RETURN
+END;
+@
+DELIMITER;

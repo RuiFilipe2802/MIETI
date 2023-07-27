@@ -1,0 +1,74 @@
+DROP DATABASE IF EXISTS aulatp9_ex1;
+CREATE DATABASE aulatp9_ex1;
+USE aulatp9_ex1;
+
+CREATE TABLE Cliente(
+	cod_cliente int,
+	cliente varchar(100),
+	profissao varchar(100),
+	localidade varchar(100),
+	PRIMARY KEY(cod_cliente)
+);
+
+CREATE TABLE Agencia(
+	cod_agencia int,
+	agencia varchar(100),
+	localidade varchar(100),
+	PRIMARY KEY(cod_agencia)
+);
+
+CREATE TABLE Conta(
+	num_conta int,
+	tipo_conta varchar(100),
+	cod_cliente int,
+	cod_agencia int,
+	saldo float,
+	PRIMARY KEY(num_conta),
+	foreign key(cod_cliente) references Cliente(cod_cliente),
+	foreign key(cod_agencia) references Agencia(cod_agencia)
+);
+
+CREATE TABLE Emprestimo(
+	num_emprestimo int,
+	cod_cliente int,
+	cod_agencia int,
+	valor float,
+	PRIMARY KEY(num_emprestimo),
+	foreign key(cod_cliente) references Cliente(cod_cliente),
+	foreign key(cod_agencia) references Agencia(cod_agencia)
+);
+
+INSERT INTO Cliente VALUES(1, 'Rui', 'Trolha', 'Fafe'),
+			  (2, 'Joao', 'Padeiro', 'Braga');
+
+INSERT INTO Agencia VALUES(1, 'CGD', 'Guimaraes');
+
+INSERT INTO Conta VALUES(1, 'Conta Normal', 1, 1, 123456789);
+INSERT INTO Conta VALUES(2, 'Conta Pobre', 2, 1, 200);
+
+CREATE VIEW Grandes_Contas
+	AS (SELECT *
+	FROM Conta
+	WHERE saldo > 100000000);
+
+CREATE VIEW Clientes_Localidades
+	AS (SELECT localidade, COUNT(*)
+	FROM Cliente
+	GROUP BY localidade);
+
+CREATE VIEW Super_Agencias
+	AS (SELECT *
+	FROM Agencia
+	WHERE cod_agencia IN
+		(SELECT cod_agencia
+		FROM Conta
+		WHERE saldo > 500000)
+	AND cod_agencia IN
+		(SELECT cod_agencia
+		FROM Emprestimo
+		WHERE valor > 500000));
+
+SELECT *
+	FROM Super_Agencias
+	WHERE localidade = 'Braga’
+	OR localidade = 'Guimarães';

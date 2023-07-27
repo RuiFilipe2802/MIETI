@@ -1,0 +1,123 @@
+Drop DATABASE IF EXISTS aulatp10_ex1;
+Create DATABASE aulatp10_ex1;
+USE aulatp10_ex1;
+
+CREATE TABLE Tecnico(
+n_func int,
+nome_func varchar(100),
+primary key(n_func)
+);
+
+CREATE TABLE Lince(
+id_lince int,
+nome_lince varchar(100),
+genero varchar(100),
+data_nasc date,
+data_obito date,
+id_pai int,
+id_mae int,
+primary key(id_lince)
+);
+
+CREATE TABLE Localizacao(
+id_lince int,
+data date,
+hora varchar(100),
+latitude int,
+longitude int,
+primary key(id_lince,data,hora)
+);
+
+CREATE TABLE Controlo(
+id_lince int,
+data date,
+n_func int, 
+peso int,
+estado_saude varchar(100),
+primary key(id_lince,data),
+foreign key(n_func) references Tecnico(n_func)
+);
+
+INSERT INTO Lince values (10,'Rui','Masculino','2021-02-21','2021-03-22',5,7),
+	                 (11,'Joao','Masculino','2021-01-01','2021-03-23',8,9),
+	                 (12,'Pereira','Feminino','2020-02-11','2022-03-10',3,4),
+			 (13,'Ferreira', 'Feminino','2020-01-01', '2022-03-11',11,12);
+
+INSERT INTO Tecnico VALUES(1,'Rogerio'),
+			  (2, 'Maria'),
+			  (3, 'Artur');
+
+INSERT INTO Controlo VALUES(10, '2021-03-22',1,80,'Saudavel'),
+			   (11, '2021-02-10',2,70,'Saudavel'),
+		           (12, '2021-04-02',3,74,'Saudavel');
+			   
+DELIMITER @
+
+CREATE PROCEDURE calcular_num_linces(OUT total_linces int)
+BEGIN 
+	Select COUNT(*) into total_linces
+	From lince;
+END;
+@
+DELIMITER;
+
+DELIMITER @
+
+CREATE FUNCTION media_peso()
+RETURNS double DETERMINISTIC
+BEGIN
+	DECLARE media double;
+	SELECT AVG(peso) INTO media
+	FROM Controlo;
+	RETURN (media);
+END;
+@
+DELIMITER;
+
+DELIMITER @ 
+
+CREATE PROCEDURE registar_lince(in idlince int, nome char(20), sexo enum("F", "M"),
+				pai int, mae int)
+BEGIN 
+	if (nome <> ' ') then
+	  INSERT INTO lince (id_lince,nome_lince, genero, data_nasc, id_pai, id_mae)
+		      VALUES(idlince,nome, sexo, curdate(), pai, mae);
+	end if;
+END;
+@
+DELIMITER;
+
+DELIMITER @
+
+CREATE FUNCTION vivo(lince int)
+RETURNS bool DETERMINISTIC
+BEGIN
+	DECLARE xobito date;
+	SELECT data_obito INTO xobito
+	FROM lince
+	WHERE id_lince = lince;
+	if(xobito is null) then
+	   	return (true);
+	else
+		return (false);
+	end if;
+END;
+@
+DELIMITER;
+
+
+DROP trigger IF EXISTS calcular_estado_saude;
+
+DELIMITER @
+
+CREATE TRIGGER calcular_estado_saude BEFORE INSERT ON Controlo
+FOR EACH ROW
+BEGIN
+	IF NEW.peso < 18 THEN
+		SET NEW.estado_saude = 'NOK';
+	ELSE
+		SET NEW.estado_saude = 'OK';
+	END IF;
+END;
+@ 
+DELIMITER;

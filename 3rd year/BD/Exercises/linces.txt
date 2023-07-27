@@ -1,0 +1,40 @@
+Drop DATABASE IF EXISTS linces;
+CREATE DATABASE linces;
+USE linces;
+
+CREATE TABLE Tecnico(
+n_func int,
+nome_func varchar(50),
+PRIMARY KEY(n_func)
+);
+
+CREATE TABLE Lince(
+id_lince int,
+nome_lince varchar(50),
+genero varchar(20),
+data_nasc date,
+data_obito date,
+id_pai int,
+id_mae int,
+PRIMARY KEY(id_lince)
+);
+
+CREATE TABLE Localizacao(
+id_lince int,
+data date,
+hora varchar(20),
+latitude varchar(50),
+longitude varchar(50),
+PRIMARY KEY(id_lince,data,hora)
+);
+
+CREATE TABLE Controlo(
+id_lince int,
+data date,
+n_func int,
+peso int,
+estado_saude varchar(50),
+PRIMARY KEY(id_lince,data),
+FOREIGN KEY(id_lince) references Lince(id_lince),
+FOREIGN KEY(n_func) references Tecnico(n_func)
+);

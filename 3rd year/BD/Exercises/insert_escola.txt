@@ -1,0 +1,3 @@
+use escola;
+insert into grupo values('G001','Matematica'),('G002','Estudo do Meio');
+insert into professor values(1,'G001','Joao Silva'),(2,'G002','Maria Soares');

@@ -1,0 +1,88 @@
+DROP DATABASE IF EXISTS aulatp7_ex1;
+CREATE DATABASE aulatp7_ex1;
+USE aulatp7_ex1;
+
+CREATE TABLE tab1(
+ a int,
+ b char,
+ c varchar(100),
+ PRIMARY KEY(a)
+);
+
+CREATE TABLE tab2(
+ x int,
+ y int,
+ z int,
+ PRIMARY KEY(x),
+ foreign key(z) references tab1(a)
+ on update cascade
+ on delete set null
+);
+
+INSERT INTO tab1
+VALUES  (1,'a', 'o primeirissimo!'),
+        (10,'h','o segundo!!!'),
+	(100, 'w', 'the last one...'),
+	(12, 'f','khgjhghghg');
+
+INSERT INTO tab2
+VALUES  (1, 300, 10),
+	(2, 250, 1),
+	(3, 100, 1),
+	(4, 100, 12);
+
+ALTER TABLE tab2 ADD column w int default 20;
+
+DROP DATABASE IF EXISTS aulatp7_ex3;
+CREATE DATABASE aulatp7_ex3;
+USE aulatp7_ex3;
+
+CREATE TABLE Grupo(
+	cod_grupo int AUTO_INCREMENT PRIMARY KEY,
+	designacao varchar(100)
+);	
+
+CREATE TABLE Tipo(
+	tipo char PRIMARY KEY,
+	descricao char NOT NULL
+);
+
+CREATE TABLE Professor(
+	cod_prof int PRIMARY KEY,
+	cod_grupo int,
+	nome varchar(100),
+	foreign key(cod_grupo) references Grupo(cod_grupo)
+);
+
+CREATE TABLE Escola(
+	cod_esc int PRIMARY KEY,
+	nome_esc varchar(50) UNIQUE,
+	tipo varchar(20),
+	concelho char NOT NULL,
+	foreign key(tipo) references Tipo(tipo)
+);
+
+CREATE TABLE Candidatura(
+	cod_esc int,
+	cod_prof int,
+	preferencia varchar(50) NOT NULL,
+	PRIMARY KEY(cod_esc, cod_prof),
+	foreign key(cod_esc) references Escola(cod_esc),
+	foreign key(cod_prof) references Professor(cod_prof)
+);
+
+CREATE TABLE Vaga(
+	cod_esc int,
+	cod_grupo int,
+	num_vagas int NOT NULL,
+	foreign key(cod_esc) references Escola(cod_esc),
+	foreign key(cod_grupo) references Grupo(cod_grupo),
+	PRIMARY KEY(cod_grupo, cod_esc)
+
+);
+
+INSERT INTO Grupo VALUES(null, 'Matematica'), (null, 'Portugues');
+INSERT INTO Professor VALUES(1,1,'Prof. Joao Silva'), (2,2,'Prof. Maria Soares');
+
+INSERT INTO Grupo VALUES(null, 'Fisica');
+UPDATE Professor SET cod_grupo = 3 WHERE cod_prof = 1;

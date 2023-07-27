@@ -1,0 +1,6 @@
+iperf -s -u
+iperf -c 10.0.1.2 -u -t 300 -b 100M
+''' 5 Mbps connection, you could try sending 
+       100 Mbps across it for 5 minutes      '''
+
+alias clear='printf "\033c"'

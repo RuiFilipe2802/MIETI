@@ -1,0 +1,36 @@
+####### OPCOES ESPECIFICAS PARA DIFERENTES SOLVERS
+
+# option mosek_options "MSK_DPAR_MIO_MAX_TIME=6000";
+
+
+# option mintoamp_options 'maxtime=6000';
+
+
+# option xpress_options 'maxtime=6000';
+
+
+#option gurobi_options $gurobi_options 'timelim 3600';
+
+
+#option cplex_options 'treememory=60000  time=6000';
+#option cplex_options 'backtrack=0.01 time=600'; 
+#option cplex_options 'branch=-1 time=27000'; 
+#option cplex_options 'cliques=3 covers=0 time=600'; 
+#option cplex_options 'zerohalfcuts=2 time=60'; 
+
+#option cplex_options 'time=1200';
+
+
+# comando para correr o modelo
+solve;
+
+####### INSTRUCOES PARA APRESENTAR O VALOR DAS VARIAVEIS DO MODELO
+
+#### Mostra todas as variaveis;
+#display _varname, _var;
+
+#### Mostra so as variaveis iguais a "1";
+display {j in 1.._nvars : 0<_var[j]<2} (_varname[j],_var[j]);
+
+# Mostra as variaveis com valores > 1
+display {j in 1.._nvars : 1<_var[j]} (_varname[j],_var[j]);

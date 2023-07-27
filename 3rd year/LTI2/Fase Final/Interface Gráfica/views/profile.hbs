@@ -1,0 +1,29 @@
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-4">
+      <div class="card">
+        <div class="avatar-ctn">
+          <img src="/avatar.png" class="avatar" alt="user profile picture" />
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">{{user.username}}</h5>
+          <a href="#" class="btn btn-dark">{{user.email}}</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-8">
+      <div class="card text-center">
+        <div class="card-header">
+          Profile
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">Bem-vindo de volta {{user.username}}</h5>
+          <p class="card-text">Escolher a zona da casa que deseja consultar:</p>
+          <a href="/visual" class="btn btn-dark">Quarto</a>
+          <a href="#" class="btn btn-dark">Cozinha</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,806 @@
+node n1 {
+    type hub
+    network-config {
+	hostname Hub1
+	!
+    }
+    canvas c1
+    iconcoords {231.0 221.0}
+    labelcoords {242.0 211.0}
+    interface-peer {e0 n3}
+    interface-peer {e1 n4}
+    interface-peer {e2 n2}
+}
+
+node n3 {
+    type router
+    model host
+    network-config {
+	hostname A1
+	!
+	interface eth0
+	 ip address 10.7.0.2/20
+	!
+    }
+    canvas c1
+    iconcoords {141.0 122.0}
+    labelcoords {133.0 159.0}
+    interface-peer {eth0 n1}
+}
+
+node n4 {
+    type router
+    model host
+    network-config {
+	hostname A2
+	!
+	interface eth0
+	 ip address 10.7.0.3/20
+	!
+    }
+    canvas c1
+    iconcoords {85.0 196.0}
+    labelcoords {74.0 235.0}
+    interface-peer {eth0 n1}
+}
+
+node n2 {
+    type router
+    model router
+    network-config {
+	hostname RA
+	!
+	interface eth0
+	 ip address 10.7.0.1/20
+	!
+	interface eth1
+	 ip address 192.168.0.5/30
+	!
+	interface eth2
+	 ip address 192.168.0.1/30
+	!
+    }
+    canvas c1
+    iconcoords {329.0 287.0}
+    labelcoords {331.0 270.0}
+    interface-peer {eth0 n1}
+    interface-peer {eth1 n6}
+    interface-peer {eth2 n19}
+    custom-config {
+	custom-config-id service:zebra
+	custom-command zebra
+	config {
+	files=('/usr/local/etc/quagga/Quagga.conf', 'quaggaboot.sh', '/usr/local/etc/quagga/vtysh.conf', )
+	}
+    }
+    custom-config {
+	custom-config-id service:zebra:/usr/local/etc/quagga/Quagga.conf
+	custom-command /usr/local/etc/quagga/Quagga.conf
+	config {
+	interface eth0
+	  ip address 10.7.0.1/20 
+	!
+	interface eth1
+	  ip address 192.168.0.5/30  
+	!
+	interface eth2
+	  ip address 192.168.0.1/30  
+	!
+	
+	ip route 10.7.16.0/21 192.168.0.6
+	ip route 10.7.24.0/23 192.168.0.6
+	ip route 10.7.28.0/22 192.168.0.6
+	ip route 10.7.26.0/24 192.168.0.2
+	ip route 10.7.27.0/24 192.168.0.2
+	}
+    }
+    services {zebra IPForward}
+}
+
+node n5 {
+    type hub
+    network-config {
+	hostname Hub2i
+	!
+    }
+    canvas c1
+    iconcoords {159.0 395.0}
+    labelcoords {159.0 386.0}
+    interface-peer {e0 n7}
+    interface-peer {e1 n8}
+    interface-peer {e2 n6}
+    interface-peer {e3 n23}
+}
+
+node n6 {
+    type router
+    model router
+    network-config {
+	hostname RB
+	!
+	interface eth0
+	 ip address 10.7.16.1/21
+	!
+	interface eth2
+	 ip address 192.168.0.9/30
+	!
+	interface eth1
+	 ip address 192.168.0.6/30
+	!
+    }
+    canvas c1
+    iconcoords {259.0 415.0}
+    labelcoords {293.0 421.0}
+    interface-peer {eth0 n5}
+    interface-peer {eth1 n2}
+    interface-peer {eth2 n12}
+    custom-config {
+	custom-config-id service:zebra
+	custom-command zebra
+	config {
+	files=('/usr/local/etc/quagga/Quagga.conf', 'quaggaboot.sh', '/usr/local/etc/quagga/vtysh.conf', )
+	}
+    }
+    custom-config {
+	custom-config-id service:zebra:/usr/local/etc/quagga/Quagga.conf
+	custom-command /usr/local/etc/quagga/Quagga.conf
+	config {
+	interface eth0
+	  ip address 10.7.16.1/21
+	  ip address 10.7.24.1/23
+	!
+	interface eth1
+	  ip address 192.168.0.6/30
+	!
+	interface eth2
+	  ip address 192.168.0.9/30
+	!
+	
+	ip route 10.7.00.0/20 192.168.0.5
+	ip route 10.7.28.0/22 192.168.0.10
+	ip route 10.7.26.0/24 192.168.0.5
+	ip route 10.7.27.0/24 192.168.0.10
+	
+	
+	}
+    }
+    services {zebra IPForward}
+}
+
+node n7 {
+    type router
+    model host
+    network-config {
+	hostname B1i
+	!
+	interface eth0
+	 ip address 10.7.16.2/21
+	!
+    }
+    canvas c1
+    iconcoords {48.0 337.0}
+    labelcoords {38.0 375.0}
+    interface-peer {eth0 n5}
+}
+
+node n8 {
+    type router
+    model host
+    network-config {
+	hostname B1ii
+	!
+	interface eth0
+	 ip address 10.7.16.3/21
+	!
+    }
+    canvas c1
+    iconcoords {35.0 428.0}
+    labelcoords {29.0 468.0}
+    interface-peer {eth0 n5}
+}
+
+node n9 {
+    type hub
+    network-config {
+	hostname Hub3
+	!
+    }
+    canvas c1
+    iconcoords {427.0 593.0}
+    labelcoords {441.0 583.0}
+    interface-peer {e0 n10}
+    interface-peer {e1 n11}
+    interface-peer {e2 n12}
+}
+
+node n10 {
+    type router
+    model host
+    network-config {
+	hostname C1
+	!
+	interface eth0
+	 ip address 10.7.28.2/22
+	!
+    }
+    canvas c1
+    iconcoords {385.0 668.0}
+    labelcoords {397.0 701.0}
+    interface-peer {eth0 n9}
+}
+
+node n11 {
+    type router
+    model host
+    network-config {
+	hostname C2
+	!
+	interface eth0
+	 ip address 10.7.28.3/22
+	!
+    }
+    canvas c1
+    iconcoords {546.0 634.0}
+    labelcoords {531.0 673.0}
+    interface-peer {eth0 n9}
+}
+
+node n12 {
+    type router
+    model router
+    network-config {
+	hostname RC
+	!
+	interface eth0
+	 ip address 10.7.28.1/22
+	!
+	interface eth2
+	 ip address 192.168.0.13/30
+	!
+	interface eth1
+	 ip address 192.168.0.10/30
+	!
+    }
+    canvas c1
+    iconcoords {380.0 512.0}
+    labelcoords {396.0 498.0}
+    interface-peer {eth0 n9}
+    interface-peer {eth1 n6}
+    interface-peer {eth2 n13}
+    custom-config {
+	custom-config-id service:zebra
+	custom-command zebra
+	config {
+	files=('/usr/local/etc/quagga/Quagga.conf', 'quaggaboot.sh', '/usr/local/etc/quagga/vtysh.conf', )
+	}
+    }
+    custom-config {
+	custom-config-id service:zebra:/usr/local/etc/quagga/Quagga.conf
+	custom-command /usr/local/etc/quagga/Quagga.conf
+	config {
+	interface eth0
+	  ip address 10.7.28.1/22
+	!
+	interface eth1
+	  ip address 192.168.0.10/30
+	!
+	interface eth2
+	  ip address 192.168.0.13/30
+	!
+	
+	ip route 10.7.00.0/20 192.168.0.9
+	ip route 10.7.16.0/21 192.168.0.9
+	ip route 10.7.24.0/23 192.168.0.9
+	ip route 10.7.26.0/24 192.168.0.14
+	ip route 10.7.27.0/24 192.168.0.14
+	
+	}
+    }
+    services {zebra IPForward}
+}
+
+node n13 {
+    type router
+    model router
+    network-config {
+	hostname R2
+	!
+	interface eth0
+	 ip address 192.168.0.14/30
+	!
+	interface eth2
+	 ip address 192.168.0.21/30
+	!
+	interface eth1
+	 ip address 192.168.0.17/30
+	!
+    }
+    canvas c1
+    iconcoords {671.0 508.0}
+    labelcoords {671.0 540.0}
+    interface-peer {eth0 n12}
+    interface-peer {eth1 n14}
+    interface-peer {eth2 n15}
+    custom-config {
+	custom-config-id service:zebra
+	custom-command zebra
+	config {
+	files=('/usr/local/etc/quagga/Quagga.conf', 'quaggaboot.sh', '/usr/local/etc/quagga/vtysh.conf', )
+	}
+    }
+    custom-config {
+	custom-config-id service:zebra:/usr/local/etc/quagga/Quagga.conf
+	custom-command /usr/local/etc/quagga/Quagga.conf
+	config {
+	interface eth0
+	  ip address 192.168.0.14/30
+	!
+	interface eth1
+	  ip address 192.168.0.17/30
+	!
+	interface eth2
+	  ip address 192.168.0.21/30
+	!
+	
+	ip route 10.7.00.0/20 192.168.0.18
+	ip route 10.7.16.0/21 192.168.0.13
+	ip route 10.7.24.0/23 192.168.0.13
+	ip route 10.7.28.0/22 192.168.0.13
+	ip route 10.7.26.0/24 192.168.0.18
+	ip route 10.7.27.0/24 192.168.0.22
+	
+	
+	}
+    }
+    services {zebra IPForward}
+}
+
+node n14 {
+    type router
+    model router
+    network-config {
+	hostname R1
+	!
+	interface eth0
+	 ip address 192.168.0.18/30
+	!
+	interface eth1
+	 ip address 192.168.0.25/30
+	!
+    }
+    canvas c1
+    iconcoords {547.0 377.0}
+    labelcoords {514.0 389.0}
+    interface-peer {eth0 n13}
+    interface-peer {eth1 n19}
+    custom-config {
+	custom-config-id service:zebra
+	custom-command zebra
+	config {
+	files=('/usr/local/etc/quagga/Quagga.conf', 'quaggaboot.sh', '/usr/local/etc/quagga/vtysh.conf', )
+	}
+    }
+    custom-config {
+	custom-config-id service:zebra:/usr/local/etc/quagga/Quagga.conf
+	custom-command /usr/local/etc/quagga/Quagga.conf
+	config {
+	interface eth0
+	  ip address 192.168.0.18/30
+	!
+	interface eth1
+	  ip address 192.168.0.25/30
+	!
+	
+	ip route 10.7.00.0/20 192.168.0.26
+	ip route 10.7.16.0/21 192.168.0.26
+	ip route 10.7.24.0/23 192.168.0.26
+	ip route 10.7.28.0/22 192.168.0.17
+	ip route 10.7.26.0/24 192.168.0.26
+	ip route 10.7.27.0/24 192.168.0.17
+	
+	
+	}
+    }
+    services {zebra IPForward}
+}
+
+node n15 {
+    type router
+    model router
+    network-config {
+	hostname RE
+	!
+	interface eth1
+	 ip address 10.7.27.1/24
+	!
+	interface eth0
+	 ip address 192.168.0.22/30
+	!
+	interface eth2
+	 ip address 192.168.0.30/30
+	!
+    }
+    canvas c1
+    iconcoords {720.0 402.0}
+    labelcoords {683.0 414.0}
+    interface-peer {eth0 n13}
+    interface-peer {eth1 n16}
+    interface-peer {eth2 n19}
+    custom-config {
+	custom-config-id service:zebra
+	custom-command zebra
+	config {
+	files=('/usr/local/etc/quagga/Quagga.conf', 'quaggaboot.sh', '/usr/local/etc/quagga/vtysh.conf', )
+	}
+    }
+    custom-config {
+	custom-config-id service:zebra:/usr/local/etc/quagga/Quagga.conf
+	custom-command /usr/local/etc/quagga/Quagga.conf
+	config {
+	interface eth0
+	  ip address 192.168.0.22/30
+	!
+	interface eth1
+	  ip address 10.7.27.1/24
+	!
+	interface eth2
+	  ip address 192.168.0.30/30
+	!
+	
+	ip route 10.7.00.0/20 192.168.0.29
+	ip route 10.7.16.0/21 192.168.0.21
+	ip route 10.7.24.0/23 192.168.0.21
+	ip route 10.7.28.0/22 192.168.0.21
+	ip route 10.7.26.0/24 192.168.0.29
+	}
+    }
+    services {zebra IPForward}
+}
+
+node n16 {
+    type hub
+    network-config {
+	hostname Hub5
+	!
+    }
+    canvas c1
+    iconcoords {807.0 381.0}
+    labelcoords {796.0 370.0}
+    interface-peer {e0 n15}
+    interface-peer {e1 n18}
+    interface-peer {e2 n17}
+}
+
+node n17 {
+    type router
+    model host
+    network-config {
+	hostname E2
+	!
+	interface eth0
+	 ip address 10.7.27.3/24
+	!
+    }
+    canvas c1
+    iconcoords {876.0 459.0}
+    labelcoords {874.0 495.0}
+    interface-peer {eth0 n16}
+}
+
+node n18 {
+    type router
+    model host
+    network-config {
+	hostname E1
+	!
+	interface eth0
+	 ip address 10.7.27.2/24
+	!
+    }
+    canvas c1
+    iconcoords {885.0 292.0}
+    labelcoords {897.0 327.0}
+    interface-peer {eth0 n16}
+}
+
+node n19 {
+    type router
+    model router
+    network-config {
+	hostname RD
+	!
+	interface eth0
+	 ip address 10.7.26.1/24
+	!
+	interface eth2
+	 ip address 192.168.0.29/30
+	!
+	interface eth1
+	 ip address 192.168.0.26/30
+	!
+	interface eth3
+	 ip address 192.168.0.2/30
+	!
+    }
+    canvas c1
+    iconcoords {636.0 263.0}
+    labelcoords {624.0 248.0}
+    interface-peer {eth0 n20}
+    interface-peer {eth1 n14}
+    interface-peer {eth2 n15}
+    interface-peer {eth3 n2}
+    custom-config {
+	custom-config-id service:zebra
+	custom-command zebra
+	config {
+	files=('/usr/local/etc/quagga/Quagga.conf', 'quaggaboot.sh', '/usr/local/etc/quagga/vtysh.conf', )
+	}
+    }
+    custom-config {
+	custom-config-id service:zebra:/usr/local/etc/quagga/Quagga.conf
+	custom-command /usr/local/etc/quagga/Quagga.conf
+	config {
+	interface eth0
+	  ip address 10.7.26.1/24
+	!
+	interface eth1
+	  ip address 192.168.0.26/30
+	!
+	interface eth2
+	  ip address 192.168.0.29/30
+	!
+	interface eth3
+	  ip address 192.168.0.2/30
+	!
+	
+	ip route 10.7.00.0/20 192.168.0.1
+	ip route 10.7.16.0/21 192.168.0.1
+	ip route 10.7.24.0/23 192.168.0.1
+	ip route 10.7.28.0/22 192.168.0.25
+	ip route 10.7.27.0/24 192.168.0.30
+	}
+    }
+    services {zebra IPForward}
+}
+
+node n20 {
+    type hub
+    network-config {
+	hostname Hub4
+	!
+    }
+    canvas c1
+    iconcoords {722.0 185.0}
+    labelcoords {722.0 174.0}
+    interface-peer {e0 n21}
+    interface-peer {e1 n22}
+    interface-peer {e2 n19}
+}
+
+node n21 {
+    type router
+    model host
+    network-config {
+	hostname D1
+	!
+	interface eth0
+	 ip address 10.7.26.2/24
+	!
+    }
+    canvas c1
+    iconcoords {614.0 111.0}
+    labelcoords {610.0 149.0}
+    interface-peer {eth0 n20}
+}
+
+node n22 {
+    type router
+    model host
+    network-config {
+	hostname D2
+	!
+	interface eth0
+	 ip address 10.7.26.3/24
+	!
+    }
+    canvas c1
+    iconcoords {835.0 127.0}
+    labelcoords {835.0 163.0}
+    interface-peer {eth0 n20}
+}
+
+node n23 {
+    type hub
+    network-config {
+	hostname Hub2ii
+	!
+    }
+    canvas c1
+    iconcoords {174.0 498.0}
+    labelcoords {211.0 519.0}
+    interface-peer {e0 n24}
+    interface-peer {e1 n25}
+    interface-peer {e3 n5}
+}
+
+node n24 {
+    type router
+    model host
+    network-config {
+	hostname B2i
+	!
+	interface eth0
+	 ip address 10.7.24.2/23
+	!
+    }
+    canvas c1
+    iconcoords {60.0 559.0}
+    labelcoords {56.0 597.0}
+    interface-peer {eth0 n23}
+}
+
+node n25 {
+    type router
+    model host
+    network-config {
+	hostname B2ii
+	!
+	interface eth0
+	 ip address 10.7.24.3/23
+	!
+    }
+    canvas c1
+    iconcoords {187.0 599.0}
+    labelcoords {185.0 639.0}
+    interface-peer {eth0 n23}
+}
+
+link l1 {
+    nodes {n3 n1}
+    bandwidth 0
+}
+
+link l2 {
+    nodes {n4 n1}
+    bandwidth 0
+}
+
+link l3 {
+    nodes {n1 n2}
+    bandwidth 0
+}
+
+link l4 {
+    nodes {n7 n5}
+    bandwidth 0
+}
+
+link l5 {
+    nodes {n8 n5}
+    bandwidth 0
+}
+
+link l6 {
+    nodes {n5 n6}
+    bandwidth 0
+}
+
+link l7 {
+    nodes {n2 n6}
+    bandwidth 0
+}
+
+link l8 {
+    nodes {n10 n9}
+    bandwidth 0
+}
+
+link l9 {
+    nodes {n11 n9}
+    bandwidth 0
+}
+
+link l10 {
+    nodes {n9 n12}
+    bandwidth 0
+}
+
+link l11 {
+    nodes {n6 n12}
+    bandwidth 0
+}
+
+link l12 {
+    nodes {n12 n13}
+    bandwidth 0
+}
+
+link l13 {
+    nodes {n14 n13}
+    bandwidth 0
+}
+
+link l14 {
+    nodes {n13 n15}
+    bandwidth 0
+}
+
+link l15 {
+    nodes {n15 n16}
+    bandwidth 0
+}
+
+link l16 {
+    nodes {n16 n18}
+    bandwidth 0
+}
+
+link l17 {
+    nodes {n16 n17}
+    bandwidth 0
+}
+
+link l18 {
+    nodes {n21 n20}
+    bandwidth 0
+}
+
+link l19 {
+    nodes {n20 n22}
+    bandwidth 0
+}
+
+link l20 {
+    nodes {n19 n20}
+    bandwidth 0
+}
+
+link l21 {
+    nodes {n14 n19}
+    bandwidth 0
+}
+
+link l22 {
+    nodes {n19 n15}
+    bandwidth 0
+}
+
+link l23 {
+    nodes {n2 n19}
+    bandwidth 0
+}
+
+link l24 {
+    nodes {n24 n23}
+    bandwidth 0
+}
+
+link l25 {
+    nodes {n25 n23}
+    bandwidth 0
+}
+
+link l27 {
+    nodes {n5 n23}
+}
+
+canvas c1 {
+    name {Canvas1}
+}
+
+option global {
+    interface_names no
+    ip_addresses yes
+    ipv6_addresses yes
+    node_labels yes
+    link_labels yes
+    show_api no
+    background_images no
+    annotations yes
+    grid no
+    traffic_start 0
+}
+
+option session {
+}
+

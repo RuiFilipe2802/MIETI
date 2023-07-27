@@ -1,0 +1,12 @@
+use teste;
+insert into tab1
+values (1, 'a', 'o primeirissimo!'),
+(10, 'h', 'o segundo!!!'),
+(100, 'w', 'the last one...'),
+(12, 'f', 'khgjhghghg');
+insert into tab2
+values (1, 300, 10),
+(2, 250, 1),
+(3, 100, 1),
+(4, 100, 12);
+alter table tab2 add column w int default 20;

@@ -1,0 +1,54 @@
+Drop DATABASE IF EXISTS aula12;
+Create DATABASE aula12;
+USE aula12;
+
+CREATE TABLE Socio(
+num_socio int,
+nome varchar(100),
+morada varchar(100),
+telefone int,
+Bi int,
+Data_Nasc date,
+data_Insc date,
+estado varchar(100),
+primary key(num_socio)
+);
+
+CREATE TABLE Filme(
+cod_filme varchar(100),
+titulo varchar(100),
+duracao int,
+primary key(cod_filme)
+);
+
+CREATE TABLE Moadalidade(
+modalidade varchar(100),
+preco int,
+multa_diaria int,
+primary key(modalidade)
+);
+
+CREATE TABLE Copia(
+cod_filme varchar(100),
+n_copia int,
+formato varchar(100),
+data_aquisicao date,
+preco int,
+primary key(n_copia),
+foreign key(cod_filme) references Filme(cod_filme)
+);
+
+CREATE TABLE Aluguer(
+num_aluguer int,
+num_socio int,
+cod_filme varchar(100),
+n_copia int,
+modalidade varchar(100),
+data_aluguer date,
+data_entrega date,
+preco int, 
+multa int,
+primary key(num_aluguer)
+);
+
+

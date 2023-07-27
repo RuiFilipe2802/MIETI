@@ -1,0 +1,57 @@
+drop database if exists escola;
+create database escola;
+use escola;
+create table Grupo(Cod_grupo varchar(64) CHECK (Cod_grupo LIKE 'G%'), Designacao varchar(64), primary key(Cod_grupo));
+create table Tipo(Tipo int, Descricao varchar(64), primary key(Tipo));
+create table Professor(Cod_prof int, Cod_grupo varchar(64), Nome_prof varchar(64), primary key(Cod_prof), foreign key(Cod_grupo) references Grupo(Cod_grupo) on update cascade on delete cascade);
+create table Escola(Cod_esc int, Nome_esc varchar(64), Tipo int, Distrito varchar(64), Concelho varchar(64), Telef int, primary key(Cod_esc), foreign key(Tipo) references Tipo(Tipo));
+create table Candidatura(Cod_esc int, Cod_prof int, Preferencia varchar(64), primary key(Cod_esc, Cod_prof), foreign key(Cod_esc) references Escola(Cod_esc), foreign key(Cod_prof) references Professor(Cod_prof));
+create table Vaga(Cod_esc int, Cod_grupo varchar(64), Num_vagas int, primary key(Cod_esc, Cod_grupo), foreign key(Cod_esc) references Escola(Cod_esc),  foreign key(Cod_grupo) references Grupo(Cod_grupo) on delete cascade);
+-------------------------
+Drop DATABASE IF EXISTS teste2;
+Create DATABASE teste2;
+USE teste2;
+
+CREATE TABLE Grupo(
+codgrupo int,
+designacao varchar(100),
+primary key(codgrupo)
+);
+CREATE TABLE Professor(
+codprof int,
+codgrupo int,
+nome varchar(100),
+PRIMARY KEY(codprof),
+foreign key(codgrupo) references Grupo(codgrupo) 
+);
+CREATE TABLE Tipo(
+tipo varchar(100),
+descricao varchar(100),
+primary key(tipo)
+);
+CREATE TABLE Escola(
+codesc int,
+nome varchar(100),
+tipo varchar(100),
+concelho varchar(100),
+telefone int,
+primary key(codesc),
+foreign key(tipo) references Tipo(tipo)
+);
+CREATE TABLE Candidatura(
+codesc int,
+codgrupo int,
+preferencia varchar(100),
+primary key(codgrupo,codesc),
+foreign key(codgrupo) references Grupo(codgrupo) on update cascade,
+foreign key(codesc) references Escola(codesc) on update cascade
+);
+
+CREATE TABLE Vaga(
+codesc int,
+codgrupo int,
+num_vagas int,
+primary key(codgrupo,codesc),
+foreign key(codgrupo) references Grupo(codgrupo) on update cascade,
+foreign key(codesc) references Escola(codesc) on update cascade 
+);

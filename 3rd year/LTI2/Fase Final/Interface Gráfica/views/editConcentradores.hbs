@@ -1,0 +1,28 @@
+<div class="container mt-4">
+  <div class="card">
+    <div class="card-header">
+      Edit Concentrador
+    </div>
+        <div class="card-body">
+            {{#each rows}}
+            <form action="/editConcentradores/{{this.idConcentrador}}" method="POST">
+                <div class="form-group">
+                    <label for="number">ID Concentrador</label>
+                    <input type="text" class="form-control" id="idConcentrador" name="idConcentrador" />
+                </div>
+
+                <div class="form-group">
+                    <label for="number">Coordenate X</label>
+                    <input type="number" class="form-control" id="x" name="x"/>
+                </div>
+
+                <div class="form-group">
+                    <label for="number">Coordenate Y</label>
+                    <input type="number" class="form-control" id="y" name="y"/>
+                </div>
+
+                <button type="submit" class="btn btn-dark">Edit Concentrador</button>
+            </form>
+            {{/each}}
+        </div>
+    </div>

@@ -1,0 +1,56 @@
+Drop DATABASE IF EXISTS aula11;
+Create DATABASE aula11;
+USE aula11;
+
+CREATE TABLE Tecnico(
+n_func int,
+nome_func varchar(100),
+primary key(n_func)
+);
+
+CREATE TABLE Lince(
+id_lince int,
+nome_lince varchar(100),
+genero varchar(100),
+data_nasc date,
+data_obito date,
+id_pai int,
+id_mae int,
+primary key(id_lince)
+);
+
+CREATE TABLE Localizacao(
+id_lince int,
+data date,
+hora varchar(100),
+latitude int,
+longitude int,
+primary key(id_lince,data,hora)
+);
+
+CREATE TABLE Controlo(
+id_lince int,
+data date,
+hora varchar(100),
+n_func int, 
+peso int,
+estado_saude varchar(100),
+primary key(id_lince,data),
+foreign key(n_func) references Tecnico(n_func)
+);
+
+DROP TRIGGER IF EXISTS calcular_estado_saude;
+DELIMITER @
+CREATE TRIGGER calcular_estado_saude
+BEFORE INSERT ON Controlo FOR EACH ROW
+BEGIN
+IF NEW.peso < 18 THEN SET NEW.estado_saude = 'OK';
+ELSE SET NEW.estado_saude = 'NOK';
+END IF;
+END;
+@
+DELIMITER ;
+
+INSERT INTO Controlo VALUES
+('1','2020-01-02','1','30','Morto');
+

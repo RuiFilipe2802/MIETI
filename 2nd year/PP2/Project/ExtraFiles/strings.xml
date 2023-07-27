@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">Covid App</string>
+    <string name="app_loading">Covid App</string>
+    <string name="todo">TODO</string>
+    <string name="service_not_available">"SERVICE NOT AVAILABLE"</string>
+    <string name="invalid_lat_long_used">"INVALID COORDENATES"</string>
+    <string name="no_address_found">"NO ADDRESS FOUND"</string>
+    <string name="address_text">"%1$s"</string>
+    <string name="login">LOGIN</string>
+    <string name="registo">REGISTO</string>
+    <string name="name_text">Name</string>
+    <string name="registo_ok">Registo</string>
+    <string name="resultados_button">VER RESULTADOS</string>
+    <string name="backButton">VOLTAR</string>
+    <string-array name="gender">
+        <item>Masculino</item>
+        <item>Feminino</item>
+        <item>Outro</item>
+    </string-array>
+</resources>

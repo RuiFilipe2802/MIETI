@@ -1,0 +1,41 @@
+DROP DATABASE IF EXISTS ex1_AulaTP6;
+CREATE DATABASE ex1_AulaTP6;
+USE ex1_AulaTP6;
+
+CREATE TABLE Cliente(
+    num_cliente int PRIMARY KEY,
+    nome varchar(100) NOT NULL,
+    morada varchar(100),
+    cidade varchar(50) DEFAULT"Guimaraes",
+    telefone int UNIQUE CHECK(telefone between 0 AND 999999999),
+    data_nasc date NOT NULL
+);
+
+DROP DATABASE IF EXISTS ex2_AulaTP6;
+CREATE DATABASE ex2_AulaTP6;
+USE ex2_AulaTP6;
+
+CREATE TABLE Grupo(
+    cod_grupo int,
+    designacao varchar(255),
+    PRIMARY KEY(cod_grupo)
+);
+
+CREATE TABLE Escola(
+    cod_esc int,
+    nome varchar(255),
+    tipo int,
+    distrito varchar(100),
+    concelho varchar(100),
+    telefone int NOT NULL UNIQUE,
+    PRIMARY KEY(cod_esc)
+);
+
+CREATE TABLE Vaga(
+    cod_esc int,
+    cod_grupo int NOT NULL,
+    PRIMARY KEY(cod_esc,cod_grupo),
+    FOREIGN KEY(cod_esc) REFERENCES Escola(cod_esc),
+    FOREIGN KEY(cod_grupo) REFERENCES Grupo(cod_grupo)
+
+);
